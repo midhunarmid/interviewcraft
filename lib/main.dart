@@ -6,9 +6,15 @@ import 'package:interviewcraft/core/presentation/pages/signin_screen.dart';
 import 'package:interviewcraft/core/presentation/utils/di.dart';
 import 'package:interviewcraft/core/presentation/utils/theme.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   setPathUrlStrategy();
   setupDependencies();

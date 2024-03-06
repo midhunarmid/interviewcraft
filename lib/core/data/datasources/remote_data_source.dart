@@ -3,32 +3,40 @@ import 'dart:math';
 import 'package:interviewcraft/core/data/models/auth_user_model.dart';
 import 'package:interviewcraft/core/presentation/utils/message_generator.dart';
 import 'package:interviewcraft/core/presentation/utils/my_app_exception.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RemoteDataSource {
   Future<AuthUserModel> authenticateUser(String email, String password) async {
-    // Simulated API call or data retrieval logic
-    // Replace this with your actual API integration logic
-
-    // Simulating a response from a remote API
-    await Future.delayed(
-        const Duration(seconds: 2)); // Simulating delay for API call
-
-    // Mock response data (replace with your actual API response parsing)
-    final Map<String, dynamic> userJson = {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-      "expiresIn": 3600,
-      "userId": "123456",
-      "email": "user@example.com"
-    };
-
-    // throw auth exception randomly for testing purpose
-    if (Random().nextBool()) {
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      print(credential);
+      AuthUserModel authUserModel = AuthUserModel(
+        email: credential.user?.email,
+      );
+      return authUserModel;
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      if (e.code == 'user-not-found') {
+        throw MyAppException(
+            title: MessageGenerator.getMessage("User Not Found"),
+            message: MessageGenerator.getMessage(
+                "User not found. Check details or sign up. Need help? Contact support."));
+      } else if (e.code == 'invalid-credential') {
+        throw MyAppException(
+            title: MessageGenerator.getMessage("Invalid Credentials"),
+            message: MessageGenerator.getMessage(
+                "Uh-oh! Looks like your credentials are incorrect. Double-check and try again. Need assistance? Contact support."));
+      } else {
+        throw MyAppException(
+            title: MessageGenerator.getMessage("Unexpected Error"),
+            message: MessageGenerator.getMessage("Please try again later."));
+      }
+    } on Exception catch (e) {
+      print(e);
       throw MyAppException(
-          title: MessageGenerator.getMessage("Auth Error"),
-          message: MessageGenerator.getMessage("Invalid credentials"));
+          title: MessageGenerator.getMessage("Unexpected Error"),
+          message: MessageGenerator.getMessage("Please try again later."));
     }
-
-    // Convert JSON data to UserModel instance
-    return AuthUserModel.fromMap(userJson);
   }
 }

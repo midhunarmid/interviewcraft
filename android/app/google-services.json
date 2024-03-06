@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "237835604840",
+    "project_id": "interviewcraft-e2f57",
+    "storage_bucket": "interviewcraft-e2f57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237835604840:android:608c50029aa672934dfcdd",
+        "android_client_info": {
+          "package_name": "com.interviewcraft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfW2sPtNvQdnezkzYXLEr_4QW3__CFrTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
