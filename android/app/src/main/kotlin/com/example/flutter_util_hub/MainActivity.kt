@@ -1,4 +1,4 @@
-package com.example.interviewcraft
+package com.interviewcraft
 
 import io.flutter.embedding.android.FlutterActivity
 
