@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:interviewcraft/core/presentation/pages/dummy_screen.dart';
 import 'package:interviewcraft/core/presentation/pages/signin_screen.dart';
+import 'package:interviewcraft/core/presentation/pages/signup_screen.dart';
 import 'package:interviewcraft/core/presentation/utils/widget_helper.dart';
 import 'package:go_router/go_router.dart';
 
@@ -54,6 +55,14 @@ final GoRouter router = GoRouter(
             context: context,
             state: state,
             child: const DummyScreen(text: "Home Screen"),
+          ),
+        ),
+        GoRoute(
+          path: 'signup',
+          pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
+            context: context,
+            state: state,
+            child: const SignUpScreen(),
           ),
         ),
       ],

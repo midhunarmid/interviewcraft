@@ -5,7 +5,9 @@ class MessageGenerator {
       "un-expected-error-message": "Some un expected error happened!",
       "auth-welcome": "Input your credentials here to log in to the system.",
       "auth-visit-site-guide":
-          "To explore in-depth instructions for utilizing this rapid starter Flutter project, head over to https://github.com/youmenotes/FlutterUtilHub to kick off your journey.",
+          "To explore in-depth instructions for utilizing this rapid starter Flutter project, head over to https://github.com/midhunarmid/flutter_util_hub to kick off your journey.",
+      "auth-welcome-signup":
+          "Welcome to Interview Craft!\nGet ready to join our community. Sign up now to unlock all the amazing features and start your journey with us. We're excited to have you on board!"
     }
   };
 

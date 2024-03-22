@@ -9,3 +9,14 @@ class AuthSignInEvent extends AuthenticationEvent {
 
   AuthSignInEvent(this.email, this.password);
 }
+
+class AuthSignUpEvent extends AuthenticationEvent {
+  final String name;
+  final String email;
+  final String password;
+  final String confirmPassword;
+  final String domain;
+
+  AuthSignUpEvent(
+      this.email, this.password, this.confirmPassword, this.name, this.domain);
+}
